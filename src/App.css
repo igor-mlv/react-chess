@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board {
+    --width: 72px;
+    width: calc(var(--width) * 8);
+    height: calc(var(--width) * 8);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    width: var(--width);
+    height: var(--width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.black {
+    background-color: rgb(36, 148, 233);
+}
+
+.white {
+    background-color: rgb(59, 202, 215);
+}
