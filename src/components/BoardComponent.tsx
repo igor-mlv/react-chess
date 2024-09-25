@@ -1,12 +1,18 @@
 import React, { FC } from 'react'
 import { Board } from '../models/Board';
 import CellComponent from './CellComponent';
+import { Cell } from '../models/Cell';
 
 interface BoardProps {
     board: Board;
     setBoard: (board: Board) => void;
 }
 const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
+    const [selectedCell, setSelectedCell] = React.useState<Cell | null>(null);
+
+    function handleCellClick(cell: Cell) {
+        if (cell.figure) setSelectedCell(cell);
+    }
     return (
         <div className="board">
             {board.cells.map((row, index) => (
@@ -15,6 +21,8 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
                         <CellComponent
                             key={cell.id}
                             cell={cell}
+                            selected={selectedCell === cell}
+                            handleCellClick={handleCellClick}
                         />
                     )}
                 </React.Fragment>
