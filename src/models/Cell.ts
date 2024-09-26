@@ -8,7 +8,7 @@ export class Cell {
     readonly color: Colors;
     figure: Figure | null;
     board: Board;
-    availible: boolean;
+    available: boolean;
     id: number;
 
     constructor(board: Board, x: number, y: number, color: Colors, figure: Figure | null) {
@@ -17,7 +17,15 @@ export class Cell {
         this.color = color;
         this.figure = figure;
         this.board = board;
-        this.availible = false;
+        this.available = false;
         this.id = Math.random();
+    }
+
+    moveFigure(targetCell: Cell) {
+        if (this.figure?.canMove(targetCell)) {
+            this.figure.moveFigure(targetCell);
+            targetCell.figure = this.figure;
+            this.figure = null;
+        }
     }
 }

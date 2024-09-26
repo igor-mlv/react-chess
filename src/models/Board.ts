@@ -23,6 +23,21 @@ export class Board {
         }
     }
 
+    public hightlightAvailableCells(selectedCell: Cell | null) {
+        for (let i = 0; i < this.cells.length; i++) {
+            for (let j = 0; j < this.cells[i].length; j++) {
+                const targetCell = this.cells[i][j];
+                targetCell.available = !!selectedCell?.figure?.canMove(targetCell);
+            }
+        }
+    }
+
+    public getCopyBoard() {
+        const newBoard = new Board();
+        newBoard.cells = this.cells;
+        return newBoard;
+    }
+
     public getCell(x: number, y: number) {
         return this.cells[y][x];
     }
